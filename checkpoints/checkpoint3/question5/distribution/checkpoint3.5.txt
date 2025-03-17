@@ -1,0 +1,7 @@
+a = 23
+Enter two integers: 
+
+The numbers you entered are 20 and 25
+p = 35.5
+Your grade is B
+The value of a = 55

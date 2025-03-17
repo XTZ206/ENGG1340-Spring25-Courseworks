@@ -1,0 +1,7 @@
+6
+-2
+y
+x = 4
+24 = 24
+no screen output
+no screen output
