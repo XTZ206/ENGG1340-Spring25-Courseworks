@@ -1,0 +1,8 @@
+(a)
+A function needs to be declared before using it in lines 10 and 14.
+Inserting “void g(int &k)” before line 3 would fix it.
+
+(b)
+4, 1
+2, 3
+0, -5

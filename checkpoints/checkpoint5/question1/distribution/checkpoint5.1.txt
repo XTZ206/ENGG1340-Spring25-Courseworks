@@ -1,0 +1,9 @@
+(a)
+The variable k and j in line 5 are not consistent with the parameter list defined in line 3.
+Therefore, the local variables k and j should be replaced by a and b respectively.
+
+(b)
+The assignment of a variable to a function and the definition of a function inside another are not allowed.
+Moreover, the identifiers a, b, and c conflict with the function names.
+To fix these errors, we can define functions b and c out of function a
+and change the variable names a, b, and c to other names that will not conflict with function names.

@@ -1,0 +1,3 @@
+(a) The entire file.
+(b) The entire function display.
+(c) The for loop statement block.
