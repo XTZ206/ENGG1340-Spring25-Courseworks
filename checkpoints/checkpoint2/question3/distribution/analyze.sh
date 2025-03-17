@@ -1,0 +1,1 @@
+cat $1 | grep /products/ | cut -f1,4 | sort | uniq

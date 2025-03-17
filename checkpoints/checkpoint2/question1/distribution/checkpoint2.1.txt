@@ -1,0 +1,4 @@
+The output is “99 is larger”in the first line and “100 is larger”in the second line.  
+The first part compares “100” and “99” in the form of a string, 
+and “100”  is sorted before “99”, thus  “99 is larger”. 
+The second part compares 100 and 99 in the form of numbers.
