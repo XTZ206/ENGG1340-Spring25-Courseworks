@@ -1,0 +1,12 @@
+Programming style is a set of rules or guidelines used when writing the source code for a computer program. It is often claimed that following a particular programming style will help programmers read and understand source code conforming to the style, and help to avoid introducing errors.
+
+Reference: https://en.wikipedia.org/wiki/Programming_style
+
+The Google C++ Style Guide: https://google.github.io/styleguide/cppguide.html
+
+Naming - General Naming Rules: https://google.github.io/styleguide/cppguide.html#General_Naming_Rules
+Comments - Comment Style: https://google.github.io/styleguide/cppguide.html#Comment_Style
+Formatting - Spaces vs. Tabs: https://google.github.io/styleguide/cppguide.html#Spaces_vs._Tabs
+If you want consistency and standardization (especially the most common standards) then you will use spaces. If you only want to focus on ridiculous complaints and piss off other devs you work with then use tabs.
+
+-- From Quora: https://qr.ae/TUnErj
