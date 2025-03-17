@@ -1,0 +1,2 @@
+Enter the number for checking:
+The number 1234567890123452 is valid.

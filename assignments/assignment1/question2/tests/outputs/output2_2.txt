@@ -1,0 +1,2 @@
+Enter the number for checking:
+The number 4512345678901235 is invalid.
