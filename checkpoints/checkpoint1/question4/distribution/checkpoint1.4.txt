@@ -1,0 +1,4 @@
+1. cat gen4_input.txt | ./gen4 > gen4_output.txt
+2. sort gen4_output.txt | uniq > sort_uniq.txt
+3. spell sort_uniq.txt > misspell.txt
+4. diff sort_uniq.txt misspell.txt | grep -f sort_uniq.txt

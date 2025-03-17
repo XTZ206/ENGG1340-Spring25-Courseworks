@@ -1,0 +1,23 @@
+1.	Why do we need to learn command line although we can use a GUI to control a computer?
+The command line helps control the computer automatically or remotely.
+
+2.	What is the meaning of ls -t?
+This command lists the directory contents sorted by modification time, and the newest one comes first.
+
+3.	What is the meaning of the command pwd?
+This command prints the full filename of the current working directory.
+
+4.	What is the meaning of the command rm?
+This command removes files or directories.
+
+5.	What is the meaning of the command mv?	
+This command moves or renames files.
+
+6.	Suppose that the fileA does not exist in your present working directory, what is the meaning of the command touch fileA?
+This command creates fileA in the current directory.
+
+7.	What is the meaning of the command tar?
+This command is an archiving utility.
+
+8.	What is the command for creating an archive files.tar from two files named fileA and fileB?
+tar -cf files.tar fileA fileB

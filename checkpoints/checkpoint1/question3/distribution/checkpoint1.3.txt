@@ -1,0 +1,9 @@
+1d0
+< Apple
+4d2
+< Dog
+
+0a1
+> Apple
+2a4
+> Dog
