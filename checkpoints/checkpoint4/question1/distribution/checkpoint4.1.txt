@@ -1,0 +1,19 @@
+1. A Makefile is created by typing the make command.
+Answer: False
+
+2. A Makefile is a shortened way of re-compiling files
+Answer: True
+
+3. Make keeps track of when files were last compiled and only recompiles those target files for which source files were changed since make was last executed.
+Answer: True
+
+4. Given the following lines of code from a makefile:
+
+RM = rm
+LIBRARY = libutil
+clean:
+<tab>$(RM) *.o *.out $(LIBRARY) core
+
+In the code given, clean is:
+
+Answer: A target File
