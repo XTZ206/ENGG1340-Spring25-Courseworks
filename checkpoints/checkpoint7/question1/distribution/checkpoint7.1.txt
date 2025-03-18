@@ -1,0 +1,3 @@
+The file name “c.txt” should be covered with quotation mark.
+And the constant value ios::ate and ios::binary should be combined together with “|” operator
+rather than passing it as the 3rd argument.

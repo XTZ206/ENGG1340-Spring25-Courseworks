@@ -1,0 +1,6 @@
+add ENGG1330 ComputerProgrammingI Kit
+show ENGG1330
+add ENGG1340 ComputerProgrammingII Chenxiong
+add COMP2113 ProgrammingTechnologies Chim
+show ENGG1340
+exit

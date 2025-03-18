@@ -1,0 +1,2 @@
+Name: ComputerProgrammingI, Lecturer: Kit
+Name: ComputerProgrammingII, Lecturer: Chenxiong
