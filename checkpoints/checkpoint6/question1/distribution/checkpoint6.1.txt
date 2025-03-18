@@ -1,0 +1,3 @@
+a. double a[2][2] = {{2, 3}, {3, 2}};
+b. no error
+c. no error

@@ -1,0 +1,5 @@
+a. no output
+b. 2 3 4 2 3 4 2 3 4
+c.
+    *** stack smashing detected ***: terminated
+    Aborted (core dumped)
