@@ -1,0 +1,13 @@
+1. Adding print statements or using a debugger.
+2. He didn’t add the “-g” flag when compiling the program. Adding the flag may fix it.
+3.
+It can show the values of the variables for verification.
+However, too many printing statements may make the output hard to read.
+4.
+It is a break in the program execution, namely pausing the program.
+By using the command “b <line>” in gdb to set a breakpoint.
+5. 32 8
+6. continue
+7. 
+line 8 add "&" before n
+line 14 remove "&" before sum

@@ -1,0 +1,16 @@
+Total number of seats: Total number of votes: Total number of lists: Votes for list 1: Automatic seat for list 1: 0
+Remainder for list 1: 80000
+Votes for list 2: Automatic seat for list 2: 0
+Remainder for list 2: 120000
+Votes for list 3: Automatic seat for list 3: 2
+Remainder for list 3: 100000
+Votes for list 4: Automatic seat for list 4: 0
+Remainder for list 4: 60000
+Votes for list 5: Automatic seat for list 5: 0
+Remainder for list 5: 6000
+Votes for list 6: Automatic seat for list 6: 1
+Remainder for list 6: 30000
+Votes for list 7: Automatic seat for list 7: 0
+Remainder for list 7: 34000
+Votes for list 8: Automatic seat for list 8: 0
+Remainder for list 8: 20000
