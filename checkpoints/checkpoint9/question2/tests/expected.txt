@@ -1,0 +1,6 @@
+Items:
+Items: eggs, milk, sugar, chocolate, flour
+Items: eggs, milk, sugar, chocolate
+Items: eggs, milk, sugar, chocolate, coffee
+Items: eggs, milk, honey, chocolate, coffee
+Items: eggs, honey, chocolate, coffee
