@@ -25,7 +25,7 @@ bool is_prime(int n)
     {
         return true;
     }
-    for (int i = 2; i * i < n; i++)
+    for (int i = 2; i * i <= n; i++)
     {
         if (n % i == 0)
         {
@@ -47,7 +47,7 @@ bool is_semiprime(int n, int *p1, int *p2)
     }
     for (int i = 2; i * i < n; i++)
     {
-        if (n % i == 0 && is_prime(i) && is_prime(n / i) && i * i != n)
+        if (n % i == 0 && is_prime(i) && is_prime(n / i))
         {
             *p1 = i;
             *p2 = n / i;

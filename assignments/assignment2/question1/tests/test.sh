@@ -3,14 +3,19 @@ g++ -std=c++11 --pedantic-errors sources/semiprime.cpp -o binary/semiprime
 cp binary/semiprime tests/
 cd tests
 
-echo "Test 1"
-./semiprime < inputs/input1_1.txt > outputs/output1_1.txt
-diff outputs/output1_1.txt expected/output1_1.txt
+echo "Running Provided Testcases"
 
-echo "Test 2"
-./semiprime < inputs/input1_2.txt > outputs/output1_2.txt
-diff outputs/output1_2.txt expected/output1_2.txt
+for i in {1..3}
+do
+    echo "Test $i"
+    ./semiprime < "inputs/input1_$i.txt" > "outputs/output1_$i.txt"
+    diff "outputs/output1_$i.txt" "expected/output1_$i.txt"
+done
 
-echo "Test 3"
-./semiprime < inputs/input1_3.txt > outputs/output1_3.txt
-diff outputs/output1_3.txt expected/output1_3.txt
+echo "Running Extra Testcases"
+for i in {1..100}
+do
+    echo "Test e$i"
+    ./semiprime < "inputs/input1_e$i.txt" > "outputs/output1_e$i.txt"
+    diff "outputs/output1_e$i.txt" "expected/output1_e$i.txt"
+done
