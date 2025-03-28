@@ -19,6 +19,7 @@ autotest: main
 	echo 500000 | ./main
 
 clean:
-	rm *.o main
+	rm *.o -f
+	rm main -f
 
-.PHONY: run autorun clean
+.PHONY: run autotest clean
