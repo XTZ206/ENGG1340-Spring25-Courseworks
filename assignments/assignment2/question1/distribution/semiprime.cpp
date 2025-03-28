@@ -49,8 +49,11 @@ bool is_semiprime(int n, int *p1, int *p2)
     {
         if (n % i == 0 && is_prime(i) && is_prime(n / i))
         {
-            *p1 = i;
-            *p2 = n / i;
+            if (p1 != nullptr && p2 != nullptr)
+            {
+                *p1 = i;
+                *p2 = n / i;
+            }
             return true;
         }
     }
