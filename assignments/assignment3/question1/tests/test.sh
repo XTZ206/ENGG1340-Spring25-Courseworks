@@ -12,3 +12,9 @@ do
     diff "outputs/output1_$i.txt" "expected/output1_$i.txt"
 done
 
+for i in {1..10}
+do
+    echo "Test Extra $i"
+    ./strproc < "inputs/input1_e$i.txt" > "outputs/output1_e$i.txt"
+    diff "outputs/output1_e$i.txt" "expected/output1_e$i.txt"
+done
