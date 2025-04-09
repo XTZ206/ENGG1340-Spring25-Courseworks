@@ -2,6 +2,11 @@ import random
 import math
 
 def get_testcase(TESTCASE_LENGTH_MAX):
+
+    length = random.randint(1, TESTCASE_LENGTH_MAX)
+    
+
+
     length = random.randint(1, TESTCASE_LENGTH_MAX)
     numbers = [random.randint(1, 100) for _ in range(length * 2)] + [random.randint(-10, -1)]
 
