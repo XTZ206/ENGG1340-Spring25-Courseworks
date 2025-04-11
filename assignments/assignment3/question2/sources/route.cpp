@@ -111,7 +111,7 @@ int main(void)
     std::getline(std::cin, filename);
     std::ifstream file(filename);
     file >> size.h >> size.w;
-    int obstacle;
+    double obstacle;
     for (int y = 0; y < size.h; y++)
     {
         for (int x = 0; x < size.w; x++)

@@ -12,3 +12,11 @@ do
     diff "outputs/output2_$i.txt" "expected/output2_$i.txt"
 done
 
+echo "Running Self-Writing Testcases"
+
+for i in {1..1}
+do 
+    echo "Test Self-Writing $i"
+    echo "inputs/input2_s$i.txt" | ./route > "outputs/output2_s$i.txt"
+    diff "outputs/output2_s$i.txt" "expected/output2_s$i.txt"
+done
