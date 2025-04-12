@@ -67,12 +67,8 @@ class Graph:
 
         while unvisited:
             visiting = min(unvisited, key=lambda v: distances[v])
-            # if distances[visiting] == float("inf"):
-            #     break
             visited.add(visiting)
             unvisited.remove(visiting)
-
-            pass
 
             for neighbor in self.get_neighbors(visiting):
                 step_cost = self.get_step(visiting, neighbor)
