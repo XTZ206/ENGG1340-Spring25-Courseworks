@@ -1,0 +1,33 @@
+delete 3
+print
+delete 3
+insert 2 16 19
+print
+insert 1 12 15
+delete 2
+insert 5 15 19
+delete 5
+insert 4 11 13
+insert 4 4 6
+update 5 13 16
+print
+insert 4 2 3
+print
+update 5 10 14
+insert 3 8 10
+print
+insert 3 8 11
+print
+update 2 2 6
+delete 1
+print
+insert 1 16 19
+print
+insert 5 7 8
+update 5 1 5
+insert 2 8 10
+update 4 14 15
+update 3 2 6
+update 5 6 10
+print
+quit

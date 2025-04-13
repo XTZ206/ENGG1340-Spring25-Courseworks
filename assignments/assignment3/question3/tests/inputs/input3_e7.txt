@@ -1,0 +1,19 @@
+insert 2 4 5
+update 4 6 10
+delete 4
+update 3 8 9
+insert 2 12 14
+insert 5 3 6
+update 2 4 8
+print
+update 5 3 4
+update 3 4 8
+update 3 11 15
+update 3 5 6
+print
+delete 4
+insert 5 13 16
+update 1 12 16
+insert 5 15 17
+insert 4 10 12
+quit

@@ -1,0 +1,10 @@
+delete 5
+update 5 7 9
+insert 3 16 18
+insert 2 10 13
+update 4 4 5
+print
+insert 4 9 10
+delete 1
+print
+quit

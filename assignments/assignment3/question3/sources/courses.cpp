@@ -69,6 +69,13 @@ bool insert_course(int id, int start, int end)
 {
     Course *new_course = new Course{id, start, end, nullptr, nullptr};
 
+    // Check for courses with the same id
+    if (find_course(id) != nullptr)
+    {
+        delete new_course;
+        return false;
+    }
+
     // Check for overlapping courses
     for (Course *curr = courses; curr != nullptr; curr = curr->next)
     {

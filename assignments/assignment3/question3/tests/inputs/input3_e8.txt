@@ -1,0 +1,8 @@
+delete 4
+print
+update 3 4 8
+delete 3
+delete 2
+insert 1 10 12
+print
+quit
