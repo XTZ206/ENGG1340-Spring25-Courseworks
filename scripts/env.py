@@ -3,7 +3,7 @@ import os
 import argparse
 
 def main():
-    parser = argparse.ArgumentParser(description="Create the Environmenet for the Coursework")
+    parser = argparse.ArgumentParser(description="Create the Environment for the Coursework")
     parser.add_argument("type", type=str, help="The type of coursework (assignment/checkpoint)")
     parser.add_argument("number", type=int, help="The number of the coursework")
     parser.add_argument("-t", "--testcase", action="store_true", help="Whether the testcases are provided")
