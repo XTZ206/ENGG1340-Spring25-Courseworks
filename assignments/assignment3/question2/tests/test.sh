@@ -21,6 +21,16 @@ do
     diff "outputs/output2_s$i.txt" "expected/output2_s$i.txt"
 done
 
+echo "Running Hand-written Testcases"
+
+for i in {1..5}
+do
+    echo "Test Hand-written $i"
+    echo "inputs/input2_h$i.txt" | ./route > "outputs/output2_h$i.txt"
+    diff "outputs/output2_h$i.txt" "expected/output2_h$i.txt"
+done
+
+
 echo "Running Extra Testcases"
 for i in {1..10}
 do
