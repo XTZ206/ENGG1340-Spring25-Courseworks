@@ -21,6 +21,7 @@ struct Position
 };
 typedef Position Size;
 Size size;
+std::vector<int> costs = {0, 0};
 
 int p2i(Position p)
 {
@@ -38,7 +39,7 @@ int p2i(Position p)
     return p.y * size.w + p.x + 2;
 };
 
-std::vector<Position> neighbors(Position p)
+std::vector<Position> get_neighbors(Position p)
 {
     std::vector<Position> ret;
 
@@ -73,29 +74,37 @@ std::vector<Position> neighbors(Position p)
     return ret;
 }
 
-double consumption(Position p, std::vector<double> &obstacles, std::vector<bool> visited)
+int get_step(int c1, int c2)
+{
+    if (c1 >= c2 && c1 - c2 < 3)
+    {
+        return 0;
+    }
+    if (c1 - c2 == -1)
+    {
+        return 1;
+    }
+    return inf;
+}
+
+int get_cost(Position p, std::vector<bool> visited)
 {
 
     visited.at(p2i(p)) = true;
-    double ret = inf;
+    int ret = inf;
 
     if (p.y == -1 && p.x == inf)
     {
         ret = 0;
     }
 
-    for (Position &neighbor : neighbors(p))
+    for (Position &neighbor : get_neighbors(p))
     {
         if (visited.at(p2i(neighbor)))
             continue;
 
-        if (obstacles.at(p2i(neighbor)) - obstacles.at(p2i(p)) > 1.5 ||
-            obstacles.at(p2i(p)) - obstacles.at(p2i(neighbor)) > 2.5)
-            continue;
-
-        double c = consumption(neighbor, obstacles, visited);
-        double s = obstacles.at(p2i(neighbor)) > obstacles.at(p2i(p)) ? obstacles.at(p2i(neighbor)) - obstacles.at(p2i(p)) : 0;
-        ret = (ret > c + s) ? (c + s) : ret;
+        int tmp = get_cost(neighbor, visited) + get_step(costs.at(p2i(p)), costs.at(p2i(neighbor)));
+        ret = (ret > tmp) ? tmp : ret;
     }
 
     return ret;
@@ -104,25 +113,24 @@ double consumption(Position p, std::vector<double> &obstacles, std::vector<bool>
 int main(void)
 {
 
-    std::vector<double> obstacles = {0, 0};
     std::vector<bool> visited = {false, false};
 
     std::string filename;
     std::getline(std::cin, filename);
     std::ifstream file(filename);
     file >> size.h >> size.w;
-    double obstacle;
+    int cost;
     for (int y = 0; y < size.h; y++)
     {
         for (int x = 0; x < size.w; x++)
         {
-            file >> obstacle;
-            obstacles.push_back(obstacle);
+            file >> cost;
+            costs.push_back(cost);
             visited.push_back(false);
         }
     }
 
-    double res = consumption(Position(-1, -1), obstacles, visited);
+    int res = get_cost(Position(-1, -1), visited);
     if (res == inf)
     {
         std::cout << 0 << std::endl;
