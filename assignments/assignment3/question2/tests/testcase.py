@@ -1,26 +1,49 @@
 import random
 
+inf: int = 0x3f3f3f3f
 class Vertex:
-    def __init__(self, name: str,  cost: float):
+    def __init__(self, name: str):
         self.name: str = name
-        self.cost: float = cost
 
     def __repr__(self):
-        return f"Vertex({self.name}, {self.cost})"
+        return f"Vertex(name=\"{self.name}\")"
+
+    def __eq__(self, other):
+        if isinstance(other, Vertex):
+            return self.name == other.name
+        return False
 
     def __hash__(self):
         return hash(self.name)
 
 class Graph:
-    def __init__(self, row: int, col: int, costs: list[float]):
-        if len(costs) != row * col:
-            raise ValueError("costs length must be equal to row * col")
-        
+    def __init__(self, row: int, col: int, costs: list[int]):
         self.row: int = row
         self.col: int = col
-        self.vertices = [Vertex("start", 0)] + \
-            [Vertex(f"{y},{x}", costs[y * col + x]) for y in range(row) for x in range(col)] + \
-            [Vertex("end", 0)]
+        self.vertices: list[Vertex] = [Vertex("start")] + \
+            [Vertex(f"{y},{x}") for y in range(row) for x in range(col)] + \
+            [Vertex("end")]
+        self.costs: dict[Vertex, int] = {Vertex(f"{y},{x}") : costs[y * col + x] for y in range(row) for x in range(col)}
+        self.costs[Vertex("start")] = 0
+        self.costs[Vertex("end")] = 0
+        self.edges: dict[Vertex, dict[Vertex, int]] = {v1 : {v2 : inf if v1 != v2 else 0 for v2 in self.vertices} for v1 in self.vertices}
+
+        for vertex in self.vertices:
+            if vertex.name == "start":
+                for y in range(row):
+                    self.edges[vertex][Vertex(f"{y},0")] = self.get_step(vertex, Vertex(f"{y},0"))
+                continue
+
+            if vertex.name == "end":
+                continue
+
+            y, x = map(int, vertex.name.split(","))
+            for ny, nx in [(y-1, x), (y+1, x), (y, x-1), (y, x+1)]:
+                if 0 <= ny < row and 0 <= nx < col:
+                    self.edges[vertex][Vertex(f"{ny},{nx}")] = self.get_step(vertex, Vertex(f"{ny},{nx}"))
+
+            if x == col - 1:
+                self.edges[vertex][Vertex("end")] = self.get_step(vertex, Vertex("end"))
 
     def get_vertex(self, name: str) -> Vertex:
         if name == "start":
@@ -33,79 +56,53 @@ class Graph:
         # +1 to skip the start vertex
     
     def get_neighbors(self, vertex: Vertex):
-        if vertex.name == "start":
-            for y in range(self.row):
-                yield self.get_vertex(f"{y},0")
-            return
-        
-        if vertex.name == "end":
-            return
-
-        y, x = map(int, vertex.name.split(","))
-        for ny, nx in [(y-1, x), (y+1, x), (y, x-1), (y, x+1)]:
-            if 0 <= ny < self.row and 0 <= nx < self.col:
-                if self.get_step(self.get_vertex(f"{ny},{nx}"), vertex) != float("inf"):
-                    yield self.get_vertex(f"{ny},{nx}")
-
-        if x == self.col - 1:
-            yield self.get_vertex("end")
-
-    def get_step(self, start: Vertex, end: Vertex) -> float:
-        if start.cost - end.cost > 2.5:
-            return float("inf")
-        if end.cost - start.cost > 1.5:
-            return float("inf")
-        if start.cost >= end.cost:
+        for neighbor, cost in self.edges[vertex].items():
+            if cost < inf:
+                yield neighbor
+        return
+    
+    def get_step(self, start: Vertex, end: Vertex) -> int:
+        if 0 <= self.costs[start] - self.costs[end] < 3:
             return 0
-        return end.cost - start.cost
-    
-    def get_cost(self, start: Vertex, end: Vertex) -> float:
-        visited = set()
-        unvisited = set(self.vertices)
-        distances = {vertex: float("inf") for vertex in self.vertices}
-        distances[start] = 0
+        if self.costs[start] - self.costs[end] == -1:
+            return 1
+        return inf
 
-        while unvisited:
-            visiting = min(unvisited, key=lambda v: distances[v])
-            visited.add(visiting)
-            unvisited.remove(visiting)
-
-            for neighbor in self.get_neighbors(visiting):
-                step_cost = self.get_step(visiting, neighbor)
-                if step_cost + distances[visiting] < distances[neighbor]:
-                    distances[neighbor] = step_cost + distances[visiting]
-
-        return distances[end]
+    def get_cost(self, start: Vertex, end: Vertex, visited: list[Vertex]) -> int:
+        if start == end:
+            return 0
         
-def get_input_str(graph):
+        cost = inf
+        for neighbor in self.get_neighbors(start):
+            if neighbor in visited:
+                continue
+
+            cost = min(cost, self.edges[start][neighbor] + self.get_cost(neighbor, end, visited + [start]))
+        return cost
+
+
+def get_input_str(graph: Graph):
     ret = f"{graph.row} {graph.col}\n"
-    
     for y in range(graph.row):
         for x in range(graph.col):
-            cost = graph.get_vertex(f"{y},{x}").cost
-            if cost == int(cost):
-                cost = int(cost)
-            ret += f"{cost}"
+            ret += str(graph.costs[Vertex(f"{y},{x}")])
             if x != graph.col - 1:
                 ret += " "
         if y != graph.row - 1:
             ret += "\n"
-
     return ret
 
-def get_output_str(graph):
-    cost = graph.get_cost(graph.get_vertex("start"), graph.get_vertex("end"))
-    if cost == float("inf"):
+def get_output_str(graph: Graph):
+    cost = graph.get_cost(Vertex("start"), Vertex("end"), [])
+    if cost >= inf:
         return "0"
     else:
-        if cost == int(cost):
-            cost = int(cost)
         return f"1\n{cost}"
 
 def get_testcase(row_max: int, col_max: int):
     row = random.randint(2, row_max)
     col = random.randint(2, col_max)
-    costs = [random.randint(0, 6) / 2 for _ in range(row * col)]
+    costs = random.choices(range(0, 6), (0.2, 0.2, 0.2, 0.2, 0.1, 0.1), k=row * col)
     graph = Graph(row, col, costs)
     input_str = get_input_str(graph)
     output_str = get_output_str(graph)
