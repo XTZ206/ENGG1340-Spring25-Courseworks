@@ -12,6 +12,15 @@ do
     diff "outputs/output1_$i.txt" "expected/output1_$i.txt"
 done
 
+echo "Running Hand-written Testcases"
+
+for i in {1..3}
+do
+    echo "Test Hand-written $i"
+    ./strproc < "inputs/input1_h$i.txt" > "outputs/output1_h$i.txt"
+    diff "outputs/output1_h$i.txt" "expected/output1_h$i.txt"
+done
+
 echo "Running Extra Testcases"
 
 for i in {1..20}
