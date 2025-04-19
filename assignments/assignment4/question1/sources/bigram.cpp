@@ -1,13 +1,15 @@
 #include <iostream>
 #include <vector>
-#include <set>
-#include <unordered_map>
+#include <algorithm>
 
 int main(void)
 {
 
     std::vector<std::string> tokens;
-    std::unordered_map<std::string, int> bigrams;
+    std::vector<std::string> bigrams;
+    std::vector<int> counts;
+    std::string most_common_bigram;
+    int most_common_count = 0;
 
     // Read the input and store the tokens
     for (std::string token; std::cin >> token;)
@@ -21,45 +23,39 @@ int main(void)
         for (auto iter = token.begin(); iter != token.end() - 1; ++iter)
         {
             std::string bigram = std::string(iter, iter + 2);
-            if (bigrams.find(bigram) == bigrams.end())
+            int index = std::distance(bigrams.begin(), std::find(bigrams.begin(), bigrams.end(), bigram));
+            if (index == bigrams.size())
             {
-                bigrams[bigram] = 1;
+                bigrams.push_back(bigram);
+                counts.push_back(1);
             }
             else
             {
-                bigrams[bigram]++;
+                counts.at(index)++;
+            }
+            if (counts.at(index) > most_common_count)
+            {
+                most_common_count = counts.at(index);
             }
         }
     }
 
-    // Find the most frequent bigram
-    std::string most_frequent_bigram = "";
-    int most_frequent_count = 0;
-
-    for (const auto &pair : bigrams)
-    {
-        if (pair.second > most_frequent_count)
-        {
-            most_frequent_count = pair.second;
-            most_frequent_bigram = pair.first;
-        }
-    }
-
-    // If there is no bigram
-    if (most_frequent_bigram == "")
+    // No bigrams found
+    if (bigrams.empty())
     {
         return 0;
     }
 
     // Print the tokens where the most frequent bigram is in it only once
-    std::set<std::string> printed_tokens;
+    most_common_bigram = bigrams.at(std::distance(counts.begin(), std::find(counts.begin(), counts.end(), most_common_count)));
+
+    std::vector<std::string> printed_tokens;
     for (const auto &token : tokens)
     {
-        if (printed_tokens.find(token) == printed_tokens.end() &&
-            token.find(most_frequent_bigram) != std::string::npos)
+        if (token.find(most_common_bigram) != std::string::npos && std::find(printed_tokens.begin(), printed_tokens.end(), token) == printed_tokens.end())
         {
-            printed_tokens.insert(token);
             std::cout << token << std::endl;
+            printed_tokens.push_back(token);
         }
     }
 
