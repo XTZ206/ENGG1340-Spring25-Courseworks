@@ -48,5 +48,7 @@ int main(void)
         print(&stack);
     }
 
+    free(stack.data);
+
     return 0;
 }
