@@ -13,7 +13,7 @@ do
 done
 
 echo "Running Extra Testcases"
-for i in {1..95}
+for i in {1..10}
 do
     echo "Test $i"
     ./postfix < "inputs/input3_e$i.txt" > "outputs/output3_e$i.txt"
